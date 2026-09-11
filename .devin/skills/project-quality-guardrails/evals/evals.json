@@ -1,0 +1,32 @@
+{
+  "skill_name": "project-quality-guardrails",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Create 4 implementation plans for the Catalogo project: fix critical issues, fix technical debt, remove redundancies, and fix accessibility bugs. Each plan should be in its own file.",
+      "expected_output": "Exactly four consolidated plan files under docs/ with clear names. No extra report, summary, or snippet files. All plans should be validated against the actual codebase.",
+      "files": [
+        "docs/plan-critical-issues.md",
+        "docs/plan-technical-debt.md",
+        "docs/plan-redundancies.md",
+        "docs/plan-accessibility.md"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Review the auth callback route in src/app/api/auth/callback/route.ts and propose a secure implementation of the redirect parameter.",
+      "expected_output": "A secure validation function that rejects protocol-relative URLs, path traversal, URL-encoded bypasses, and dangerous characters. Falls back to /dashboard.",
+      "files": [
+        "src/app/api/auth/callback/route.ts"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Refactor product-table.tsx to avoid concurrent delete requests and refresh the table after a delete.",
+      "expected_output": "An optimistic update with rollback, disabling all delete buttons during the operation, and a single refresh after success.",
+      "files": [
+        "src/components/dashboard/product-table.tsx"
+      ]
+    }
+  ]
+}

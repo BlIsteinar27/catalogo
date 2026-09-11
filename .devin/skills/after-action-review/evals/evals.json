@@ -1,0 +1,29 @@
+{
+  "skill_name": "after-action-review",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I noticed you created a folder that already exists. You should have checked first.",
+      "expected_output": "An AAR response with the four sections: Intención, Realidad, Causalidad, and Acción. No empty apologies. Includes a concrete fix and a preventive update.",
+      "files": [
+        ".devin/skills/project-quality-guardrails/SKILL.md"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "You said you completed all 4 plans, but you only created 3. Where is the fourth one?",
+      "expected_output": "An AAR response that identifies the missing deliverable, the root cause (incomplete task tracking), and an immediate fix to create the missing plan.",
+      "files": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "The subagent you spawned created 3 extra report files. This is not what I asked for.",
+      "expected_output": "An AAR response that identifies the subagent output control failure, cleans up the extra files, and updates the guardrails for subagent instructions.",
+      "files": [
+        ".devin/skills/project-quality-guardrails/SKILL.md"
+      ]
+    }
+  ]
+}

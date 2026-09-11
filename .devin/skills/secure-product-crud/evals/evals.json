@@ -1,0 +1,23 @@
+{
+  "skill_name": "secure-product-crud",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Necesito agregar una nueva server action en src/server/products.ts llamada duplicateProduct(id: string) que clone un producto existente (mismo nombre con \"(copia)\" al final) y lo inserte como nuevo producto en Supabase.",
+      "expected_output": "The new duplicateProduct action checks getCurrentUser() and returns { success: false, error: 'No autorizado' } when there is no session, before touching Supabase. It reuses ProductInsert/Product types from src/lib/supabase/types.ts, returns ActionResult<Product>, wraps the Supabase call in try/catch with console.error logging, and calls revalidatePath('/') and revalidatePath('/dashboard') after a successful insert.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Quiero crear una nueva ruta /dashboard/reportes que muestre un resumen de ventas. Es una página nueva dentro del panel admin.",
+      "expected_output": "The new page is created under src/app/dashboard/reportes/ (or similar), relying on the existing src/app/dashboard/layout.tsx which already calls requireAuth(), instead of adding a redundant or missing auth check. If the assistant reasons about protection, it correctly identifies that the dashboard layout already guards nested routes and does not need to duplicate requireAuth() in the new page unless it lives outside that layout.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Revisa src/server/storage.ts y dime si uploadProductImage tiene algún problema de seguridad, y si puedes arreglarlo.",
+      "expected_output": "The assistant identifies that uploadProductImage uses createServiceClient() (service-role key) without verifying a Supabase session first, unlike createProduct/updateProduct/deleteProduct in src/server/products.ts. The fix adds a getCurrentUser() check at the start of the function that returns { success: false, error: 'No autorizado' } (or equivalent) when there is no user, before any file validation or storage upload happens.",
+      "files": []
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "skill_name": "devin-rule-creator",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Create a Devin rule named 'react-components' that enforces React conventions for all files in src/components. It should use the glob trigger and include a description.",
+      "expected_output": "A file at `.devin/rules/react-components.md` with `trigger: glob`, a `globs` field matching `src/components/**`, a `description`, and a markdown body with component conventions.",
+      "files": [".devin/rules/react-components.md"],
+      "assertions": [
+        {
+          "type": "file_exists",
+          "path": ".devin/rules/react-components.md"
+        },
+        {
+          "type": "contains",
+          "path": ".devin/rules/react-components.md",
+          "content": "trigger: glob"
+        },
+        {
+          "type": "contains",
+          "path": ".devin/rules/react-components.md",
+          "content": "src/components"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Create an AGENTS.md file for the frontend directory that tells Devin to use TypeScript and functional components in that folder.",
+      "expected_output": "A file at `frontend/AGENTS.md` (or `AGENTS.md` in the requested directory) with no frontmatter and bullet guidelines about TypeScript and functional components.",
+      "files": ["frontend/AGENTS.md"],
+      "assertions": [
+        {
+          "type": "file_exists",
+          "path": "frontend/AGENTS.md"
+        },
+        {
+          "type": "not_contains",
+          "path": "frontend/AGENTS.md",
+          "content": "---"
+        },
+        {
+          "type": "contains",
+          "path": "frontend/AGENTS.md",
+          "content": "TypeScript"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Create a workspace-wide rule named 'testing-standards' that is always on and includes a failing-test-first guideline.",
+      "expected_output": "A file at `.devin/rules/testing-standards.md` with `trigger: always_on`, a `description`, and a markdown body with a testing guideline.",
+      "files": [".devin/rules/testing-standards.md"],
+      "assertions": [
+        {
+          "type": "file_exists",
+          "path": ".devin/rules/testing-standards.md"
+        },
+        {
+          "type": "contains",
+          "path": ".devin/rules/testing-standards.md",
+          "content": "trigger: always_on"
+        },
+        {
+          "type": "contains",
+          "path": ".devin/rules/testing-standards.md",
+          "content": "failing test first"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Create a manual rule named 'deployment-checklist' that the user can invoke with @deployment-checklist. It should list staging and production steps.",
+      "expected_output": "A file at `.devin/rules/deployment-checklist.md` with `trigger: manual`, a `description`, and a markdown checklist.",
+      "files": [".devin/rules/deployment-checklist.md"],
+      "assertions": [
+        {
+          "type": "file_exists",
+          "path": ".devin/rules/deployment-checklist.md"
+        },
+        {
+          "type": "contains",
+          "path": ".devin/rules/deployment-checklist.md",
+          "content": "trigger: manual"
+        },
+        {
+          "type": "contains",
+          "path": ".devin/rules/deployment-checklist.md",
+          "content": "production"
+        }
+      ]
+    }
+  ]
+}
